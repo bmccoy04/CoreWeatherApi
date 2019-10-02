@@ -6,5 +6,6 @@ namespace CoreWeatherApi.Core.Interfaces
     public interface ICurrentConditionsProvider
     {
         IEnumerable<CurrentConditionsDto> Get();
+        CurrentConditionsDto Get(int id);
     }
 }

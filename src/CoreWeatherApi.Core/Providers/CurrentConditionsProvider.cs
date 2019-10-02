@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using CoreWeatherApi.Core.Dtos;
+using CoreWeatherApi.Core.Exceptions;
 using CoreWeatherApi.Core.Interfaces;
 
 namespace CoreWeatherApi.Core.Providers
@@ -22,8 +23,17 @@ namespace CoreWeatherApi.Core.Providers
 
             return retValue.OrderBy(x => x.Name).AsEnumerable();
         }
+
+        public CurrentConditionsDto Get(int id)
+        {
+            if(id == AlderaanConditions.Id)
+                throw new ItemNotFoundException("There has been a distdisturbance in the force");
+
+            return Get().SingleOrDefault(x => x.Id == id);
+        }
         public CurrentConditionsDto AlderaanConditions => new CurrentConditionsDto()
         {
+            Id = 1,
             Name = "Alderaan",
             Description = "NaN",
             Temperature = "NaN",
@@ -34,6 +44,7 @@ namespace CoreWeatherApi.Core.Providers
         };
         public CurrentConditionsDto HothConditions => new CurrentConditionsDto()
         {
+            Id = 2,
             Name = "Hoth",
             Description = "It's very cold here",
             Temperature = "-76",
@@ -45,6 +56,7 @@ namespace CoreWeatherApi.Core.Providers
 
         public CurrentConditionsDto NabooConditions => new CurrentConditionsDto()
         {
+            Id = 3,
             Name = "Naboo",
             Description = "It's all good here",
             Temperature = "76",
@@ -56,6 +68,7 @@ namespace CoreWeatherApi.Core.Providers
 
         public CurrentConditionsDto DagobahConditions => new CurrentConditionsDto()
         {
+            Id = 4,
             Name = "Degobah",
             Description = "Very rainy with violent lightning",
             Temperature = "91",
@@ -66,6 +79,7 @@ namespace CoreWeatherApi.Core.Providers
         };
         public CurrentConditionsDto JakkuConditions => new CurrentConditionsDto()
         {
+            Id = 5,
             Name = "Jakku",
             Description = "Bright, barren, and cold",
             Temperature = "55",
@@ -76,6 +90,7 @@ namespace CoreWeatherApi.Core.Providers
         };
         public CurrentConditionsDto BatuConditions => new CurrentConditionsDto()
         {
+            Id = 6,
             Name = "Batu",
             Description = "Hot and steamy",
             Temperature = "95",
