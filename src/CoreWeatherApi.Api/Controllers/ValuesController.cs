@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CoreWeatherApi.Api.Controllers
 {
+    [Route("api/v1/values")]
     public class ValuesController : BaseApiV1Controller 
     {
         private IMediator _mediator;

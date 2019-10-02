@@ -3,26 +3,28 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CoreWeatherApi.Core.Dtos;
 using CoreWeatherApi.Core.Handlers;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CoreWeatherApi.Api.Controllers
 {
-    public class CurrentconditionsController : BaseApiV1Controller 
+    [Route("api/v1/current-conditions")]
+    public class CurrentConditionsController : BaseApiV1Controller 
     {
         private IMediator _mediator;
 
-        public CurrentconditionsController(IMediator mediator)
+        public CurrentConditionsController(IMediator mediator)
         {
             _mediator = mediator;
         }
 
         // GET api/values
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<string>>> Get()
+        public async Task<ActionResult<IEnumerable<CurrentConditionsDto>>> Get()
         {
-            return Ok(await _mediator.Send(new GetValuesQuery()));
+            return Ok(await _mediator.Send(new GetCurrentConditionsQuery()));
         }
 
         // GET api/values/5

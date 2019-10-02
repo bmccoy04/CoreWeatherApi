@@ -10,6 +10,7 @@ using CoreWeatherApi.Core.Configurations;
 using CoreWeatherApi.Core.Entities;
 using CoreWeatherApi.Core.Handlers;
 using CoreWeatherApi.Core.Interfaces;
+using CoreWeatherApi.Core.Providers;
 using CoreWeatherApi.Infrastructure.Data;
 using FluentValidation;
 using MediatR;
@@ -50,7 +51,6 @@ namespace CoreWeatherApi.Api.Configurations
             _container.Register<IRepository, EfRepository>(Lifestyle.Transient);
 
             _container.RegisterSingleton<IMediator, Mediator>();
-
             _container.Register<IValidatorFactory, FluentValidationFactory>(Lifestyle.Singleton);
             _container.Register(typeof(IValidator<>), assemblies);
 
@@ -75,6 +75,8 @@ namespace CoreWeatherApi.Api.Configurations
             _container.Collection.Register(typeof(IRequestPostProcessor<,>), Enumerable.Empty<Type>());
 
             _container.Register(() => new ServiceFactory(_container.GetInstance), Lifestyle.Singleton);
+            
+            _container.Register<ICurrentConditionsProvider, CurrentConditionsProvider>(Lifestyle.Singleton);
 
             services.AddHttpContextAccessor();
             services.EnableSimpleInjectorCrossWiring(_container);

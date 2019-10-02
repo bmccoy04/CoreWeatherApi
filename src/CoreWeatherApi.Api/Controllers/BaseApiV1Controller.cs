@@ -9,7 +9,6 @@ using Microsoft.AspNetCore.Mvc;
 namespace CoreWeatherApi.Api.Controllers
 {
     
-    [Route("api/v1/[controller]")]
     [ApiController]
     public class BaseApiV1Controller : ControllerBase
     {

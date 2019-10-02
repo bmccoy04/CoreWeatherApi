@@ -13,6 +13,8 @@ using CoreWeatherApi.Core.Dtos;
 
 namespace CoreWeatherApi.Api.Controllers
 {
+
+    [Route("api/v1/blogs")]
     public class BlogsController : BaseApiV1Controller 
     {
         private readonly IMediator _mediator;
