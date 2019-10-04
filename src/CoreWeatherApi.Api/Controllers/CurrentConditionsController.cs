@@ -31,20 +31,5 @@ namespace CoreWeatherApi.Api.Controllers
         {
             return Ok(await _mediator.Send(new GetCurrentConditionQuery() { Id = id }));
         }
-
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
     }
 }

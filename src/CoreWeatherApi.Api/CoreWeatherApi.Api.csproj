@@ -29,7 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CoreWeatherApi.Infrastructure\CoreWeatherApi.Infrastructure.csproj" />
+    <ProjectReference Include="..\CoreWeatherApi.Core\CoreWeatherApi.Core.csproj" />
   </ItemGroup>
 
 </Project>

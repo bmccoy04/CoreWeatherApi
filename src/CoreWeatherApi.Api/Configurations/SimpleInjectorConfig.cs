@@ -11,7 +11,6 @@ using CoreWeatherApi.Core.Entities;
 using CoreWeatherApi.Core.Handlers;
 using CoreWeatherApi.Core.Interfaces;
 using CoreWeatherApi.Core.Providers;
-using CoreWeatherApi.Infrastructure.Data;
 using FluentValidation;
 using MediatR;
 using MediatR.Pipeline;
@@ -47,8 +46,6 @@ namespace CoreWeatherApi.Api.Configurations
                                                     .CreateLogger());
 
             var assemblies = GetAssemblies().ToArray();
-
-            _container.Register<IRepository, EfRepository>(Lifestyle.Transient);
 
             _container.RegisterSingleton<IMediator, Mediator>();
             _container.Register<IValidatorFactory, FluentValidationFactory>(Lifestyle.Singleton);
@@ -92,7 +89,6 @@ namespace CoreWeatherApi.Api.Configurations
 
         public static void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            _container.CrossWire<AppDbContext>(app);
             app.UseSimpleInjector(_container, options => { options.UseLogging(); });
             
             _container.Verify();
@@ -101,7 +97,6 @@ namespace CoreWeatherApi.Api.Configurations
         private static IEnumerable<Assembly> GetAssemblies()
         {
             yield return typeof(IMediator).GetTypeInfo().Assembly;
-            yield return typeof(EfRepository).GetTypeInfo().Assembly;
             yield return typeof(IRepository).GetTypeInfo().Assembly;
         }
     }
