@@ -103,7 +103,7 @@ namespace CoreWeatherApi.Core.Providers
         private string GetTime(int daysOffset, int hourOffest, int minOffset, int secondsOffset)
         {
             var now = DateTime.Now.AddDays(daysOffset).AddHours(hourOffest).AddMinutes(minOffset).AddSeconds(secondsOffset);
-            return now.ToLongDateString();
+            return now.ToLongDateString() + " " + now.ToLongTimeString();
         }
 
     }
